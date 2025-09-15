@@ -1,4 +1,4 @@
-##evorca: Fast, minimal plmDCA in JAX
+# evorca: Fast, minimal plmDCA in JAX
 
 Fast, minimal plmDCA in JAX. Turn MSAs into actionable contact maps and coupling matrices via a friendly CLI and a NumPy‑first Python API.
 
