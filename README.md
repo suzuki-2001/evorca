@@ -1,6 +1,6 @@
 # evorca: fast and minimal plmDCA in JAX
 
-Fast, minimal plmDCA in JAX. Turn MSAs into actionable contact maps and coupling matrices via a friendly CLI and a NumPy‑first Python API.
+Fast and minimal plmDCA in JAX. Turn MSAs into actionable contact maps and coupling matrices via a friendly CLI and a NumPy‑first Python API.
 
 ![evorca contact map example](md/header.png)
 
@@ -11,17 +11,6 @@ Fast, minimal plmDCA in JAX. Turn MSAs into actionable contact maps and coupling
 - Productive: CLI for quick runs; Python API for downstream analysis.
 - Performant: JAX + Optax for fast training on CPU/GPU; sparse I/O for large L.
 
-
-## Table of Contents
-
-- Installation
-- Quickstart (CLI)
-- Quickstart (Python API)
-- Outputs
-- Method Overview
-- How to Cite
-- References
-- License
 
 ## Installation
 
@@ -66,7 +55,7 @@ Jsym = res["Jsym"]   # (L, L, Q, Q)
 score = res["score"] # (L, L)
 meta = res["meta"]   # training metadata
 
-# Visualize directly from arrays (no files needed)
+# Visualize directly from arrays
 ev.visualize_array(score, topk=50, seq_type="protein")
 
 # If you prefer not to save files, pass out=None
@@ -87,7 +76,7 @@ ev.visualize(Path("output"), topk=50, seq_type="protein")
 
 
 ## Method Overview
-evorca estimates pairwise statistical couplings from a multiple sequence alignment using a Potts model trained by pseudo‑likelihood. Given an A3M alignment, lowercase insertions are removed and sequences are encoded over a domain‑specific alphabet (proteins: 20 amino acids + gap; RNA: ACGU + gap, with T mapped to U). The alignment becomes a one‑hot tensor across sequences, positions, and alphabet states.
+`evorca` estimates pairwise statistical couplings from a multiple sequence alignment using a Potts model trained by pseudo‑likelihood. Given an A3M alignment, lowercase insertions are removed and sequences are encoded over a domain‑specific alphabet (proteins: 20 amino acids + gap; RNA: ACGU + gap, with T mapped to U). The alignment becomes a one‑hot tensor across sequences, positions, and alphabet states.
 
 To reduce redundancy, sequence weights follow a Henikoff‑style scheme that ignores the gap channel. The model comprises single‑site fields and pairwise couplings; training minimizes the negative pseudo‑log‑likelihood (NPLL) of site‑conditionals with L2 regularization on both parameter sets. We optimize using AdamW in Optax with mini‑batches. Throughout training we enforce symmetry and remove self‑interactions; before scoring we apply a zero‑sum gauge to each pairwise block. Contacts are scored via the Frobenius norm of gap‑excluded coupling blocks and optionally refined with Average Product Correction (APC).
 
@@ -100,7 +89,7 @@ If you use evorca in your research, please cite this software and the underlying
   author       = {Shosuke Suzuki},
   title        = {evorca: Fast, minimal plmDCA in JAX},
   year         = {2025},
-  howpublished = {\url{github.com/suzuki-2001/evorca}},
+  howpublished = {https://github.com/suzuki-2001/evorca},
   note         = {Version 0.1.0}
 }
 ```
