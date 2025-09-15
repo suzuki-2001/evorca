@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Output
+output/
+**/output/
+*.npy
+*.npz
+*.png
+
+# Test
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Local outputs
+output/
+
+evorca.egg-info/

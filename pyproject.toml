@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evorca"
+version = "0.1.0"
+description = "JAX-based plmDCA contact predictor"
+authors = [{ name="suzuki-2001", email="suzuki.shosuke@kde.cs.tsukuba.ac.jp"}]
+dependencies = ["jax", "numpy", "matplotlib", "optax"]
+
+[project.scripts]
+evorca = "evorca.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["evorca"]
